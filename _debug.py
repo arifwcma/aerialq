@@ -1,0 +1,6 @@
+f = open(r"C:\Users\m.rahman\qgis\aerialq\dirs.txt", "rb")
+raw = f.read()
+f.close()
+print(f"Bytes: {len(raw)}")
+print(f"First 200 bytes: {raw[:200]}")
+print(f"Newlines: {raw.count(b'\\n')}")

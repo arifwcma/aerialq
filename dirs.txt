@@ -1,0 +1,13 @@
+Towns: I:\Raster\WCMATOWNS_2017\dataset_imagery\ecw\
+
+Rural: I:\Raster\WCMARURAL_2017\dataset_imagery\mosaic\
+
+ECMA: I:\Raster\WCMA_2010\dataset_imagery\ecw\50cm\
+
+ISC: I:\raster\ISC_2010\dataset_imagery\ecw\
+
+Victoria: I:\raster\VICTORIA_2010\dataset_imagery\ecw\
+
+SA: I:\Raster\SAAerial_2008\dataset_imagery\ecw\
+
+
