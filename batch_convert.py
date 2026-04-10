@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 from datetime import datetime
 
-TEST = True
+TEST = False
 CIR = False
 
 DIRS_FILE = r"C:\Users\m.rahman\qgis\aerialq\dirs.txt"
@@ -102,12 +102,13 @@ def main():
         ecws = find_ecws(src_dir)
         print(f"  Found {len(ecws)} ECW files")
 
-        for ecw in ecws:
+        for i, ecw in enumerate(ecws, 1):
             stem = Path(ecw).stem
             dst = safe_name(out_dir, stem)
             print(f"  {Path(ecw).name} → {dst}")
             convert(ecw, dst, TEST, CIR)
             total_files += 1
+            print(f"  {i} ecw done")
 
         print()
 
