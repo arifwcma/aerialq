@@ -102,13 +102,20 @@ def main():
         ecws = find_ecws(src_dir)
         print(f"  Found {len(ecws)} ECW files")
 
+        skipped = 0
         for i, ecw in enumerate(ecws, 1):
             stem = Path(ecw).stem
+            existing = os.path.join(out_dir, f"{stem}.tif")
+            if os.path.exists(existing):
+                skipped += 1
+                continue
             dst = safe_name(out_dir, stem)
             print(f"  {Path(ecw).name} → {dst}")
             convert(ecw, dst, TEST, CIR)
             total_files += 1
             print(f"  {i} ecw done")
+        if skipped:
+            print(f"  Skipped {skipped} (already exist)")
 
         print()
 
