@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 TEST = False
-CIR = False
+CIR = True
 
 DIRS_FILE = r"C:\Users\m.rahman\qgis\aerialq\dirs.txt"
 OUT_ROOT = r"I:\Raster\UPDATED_AERIALS"
