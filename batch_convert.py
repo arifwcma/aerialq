@@ -106,7 +106,7 @@ def main():
         for i, ecw in enumerate(ecws, 1):
             stem = Path(ecw).stem
             existing = os.path.join(out_dir, f"{stem}.tif")
-            if os.path.exists(existing):
+            if os.path.exists(existing) and not (CIR and "_cir_" in stem.lower()):
                 skipped += 1
                 continue
             dst = safe_name(out_dir, stem)
