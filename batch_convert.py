@@ -6,6 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 TEST = False
+OVERWRITE = True
 
 DIRS_FILE = r"C:\Users\m.rahman\qgis\aerialq\dirs.txt"
 OUT_ROOT = r"I:\Raster\UPDATED_AERIALS\tif"
@@ -104,7 +105,7 @@ def main():
         for i, ecw in enumerate(ecws, 1):
             stem = Path(ecw).stem
             existing = os.path.join(out_dir, f"{stem}.tif")
-            if os.path.exists(existing):
+            if os.path.exists(existing) and not OVERWRITE:
                 skipped += 1
                 continue
             is_cir = "_cir_" in stem.lower()
