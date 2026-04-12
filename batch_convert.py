@@ -6,10 +6,9 @@ from pathlib import Path
 from datetime import datetime
 
 TEST = False
-CIR = True
 
 DIRS_FILE = r"C:\Users\m.rahman\qgis\aerialq\dirs.txt"
-OUT_ROOT = r"I:\Raster\UPDATED_AERIALS"
+OUT_ROOT = r"I:\Raster\UPDATED_AERIALS\tif"
 CHUNK = 1000
 
 
@@ -53,7 +52,7 @@ def convert(src_path, dst_path, test, cir):
         return
     w, h = ds.RasterXSize, ds.RasterYSize
     bands = ds.RasterCount
-    out_bands = 3 if bands >= 3 else bands
+    out_bands = bands
 
     drv = gdal.GetDriverByName("GTiff")
     out = drv.Create(dst_path, w, h, out_bands, gdal.GDT_Byte, ["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"])
@@ -87,8 +86,7 @@ def main():
     t0 = time.time()
     entries = parse_dirs(DIRS_FILE)
     total_files = 0
-    mode = "TEST" if TEST else ("CIR→Natural" if CIR else "ECW→TIF")
-    print(f"Mode: {mode}\n")
+    print(f"Mode: {'TEST' if TEST else 'ECW→TIF (CIR auto-detected)'}\n")
 
     for label, src_dir in entries:
         print(f"[{label}] {src_dir}")
@@ -106,12 +104,13 @@ def main():
         for i, ecw in enumerate(ecws, 1):
             stem = Path(ecw).stem
             existing = os.path.join(out_dir, f"{stem}.tif")
-            if os.path.exists(existing) and not (CIR and "_cir_" in stem.lower()):
+            if os.path.exists(existing):
                 skipped += 1
                 continue
+            is_cir = "_cir_" in stem.lower()
             dst = safe_name(out_dir, stem)
-            print(f"  {Path(ecw).name} → {dst}")
-            convert(ecw, dst, TEST, CIR)
+            print(f"  {Path(ecw).name} → {dst}{' [CIR]' if is_cir else ''}")
+            convert(ecw, dst, TEST, is_cir)
             total_files += 1
             print(f"  {i} ecw done")
         if skipped:

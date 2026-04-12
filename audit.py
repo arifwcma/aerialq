@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 DIRS_FILE = r"C:\Users\m.rahman\qgis\aerialq\dirs.txt"
-OUT_ROOT = r"I:\Raster\UPDATED_AERIALS"
+OUT_ROOT = r"I:\Raster\UPDATED_AERIALS\tif"
 
 
 def parse_dirs(path):
