@@ -1,0 +1,7 @@
+[4200/10377]
+  MATCH: I:\Elevation\SRTM\regular_surface\tiff_hillshade\s37_e141_1arc_v3_hillshade.tif
+[4400/10377]
+[4600/10377]
+[4800/10377]
+[5000/10377]
+  MATCH: I:\Elevation\WCMA2004\regular_surface\tiff_hillshade\wi5406009_hillshade.tif
